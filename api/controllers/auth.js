@@ -48,6 +48,7 @@ export const login= (req,res) =>{
     //CHECK USER
     const q = "SELECT * FROM users WHERE username = $1"
     
+    
 
     db.query(q,[req.body.username], (err,data) =>{
          //console.log(data)
