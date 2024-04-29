@@ -49,7 +49,7 @@ export const addPost = (req,res) =>{
     jwt.verify(token,"jwtkey",(err, userInfo) => {
         if(err) return res.status(403).json("token is not valid")
 
-        const q = "INSERT INTO posts (title,descript,img,cat,date,uid) VALUES ($1,$2,$3,$4,$5,$6))"
+        const q = "INSERT INTO posts (title,descript,img,cat,date,uid) VALUES ($1,$2,$3,$4,$5,$6)"
 
         const values = [
             req.body.title,
@@ -59,8 +59,10 @@ export const addPost = (req,res) =>{
             req.body.date,
             userInfo.id,
         ]
+        console.log(values)
 
-        db.query(q,[values], (err,data) => {
+        db.query(q,values, (err,data) => {
+            
             if (err) return res.status(500).json(err);
             return res.json("Post has been created")
         })
@@ -99,7 +101,7 @@ export const updatePost = (req,res) =>{
 
         const postId = req.params.id
 
-        const q = "UPDATE posts SET title=$1,descript=$2,img=$3,cat=$4 WHERE id = $5 AND uid = $6"
+        const q = "UPDATE posts SET title = $1,descript = $2,img = $3,cat = $4 WHERE id = $5 AND uid = $6"
 
         const values = [
             req.body.title,
@@ -110,6 +112,7 @@ export const updatePost = (req,res) =>{
         ]
 
         db.query(q,[...values,postId,userInfo.id], (err,data) => {
+            console.log(err)
             if (err) return res.status(500).json(err);
             return res.json("Post has been updated")
         })

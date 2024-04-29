@@ -1,7 +1,7 @@
 import React,{useState, useRef, useMemo} from "react";
 import JoditEditor from 'jodit-react';
 import axios from "axios"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 
@@ -14,6 +14,7 @@ const Write = () => {
     const [cat, setCat] = useState(state?.cat || "")
     const [file, setFile] = useState(null)
 
+    //const navigate = useNavigate();
 
     const upload = async ()=>{
         try{
@@ -34,19 +35,20 @@ const Write = () => {
         const imgUrl = await upload()
 
         try{
-            state ? await axios.put(`http://localhost:8800/api /posts/${state.id}`,{
+            state ? await axios.put(`http://localhost:8800/api/posts/${state.id}`,{
                 title,
-                descript,
+                descript: content,
                 cat,
                 img:file ? imgUrl : ""
-            },{ withCredentials: true }) : await axios.post(`http://localhost:8800/api /posts/`,{
+            },{ withCredentials: true }) : await axios.post(`http://localhost:8800/api/posts/`,{
                 title,
-                descript,
+                descript: content,
                 cat,
                 img:file ? imgUrl : "",
                 date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
 
         },{ withCredentials: true })
+        //navigate("/")
     }catch(err){
             console.log(err)
 
@@ -88,24 +90,24 @@ const Write = () => {
                     <h1>Category</h1>
                     <div className="cat">
 
-                    <input type="radio" checked={cat === "art"} name="cat" value="art" id="art" onChange={e=>setCat(e.target.value)}/>
-                    <label htmlFor="art">Art</label>
+                    <input type="radio" checked={cat === "symptoms"} name="cat" value="symptoms" id="symptoms" onChange={e=>setCat(e.target.value)}/>
+                    <label htmlFor="symptoms">Symptoms</label>
                     </div>
                     <div className="cat">
-                    <input type="radio" checked={cat === "design"} name="cat" value="design" id="design" onChange={e=>setCat(e.target.value)}/>
-                    <label htmlFor="design">Design</label>
+                    <input type="radio" checked={cat === "treatment"} name="cat" value="treatment" id="treatment" onChange={e=>setCat(e.target.value)}/>
+                    <label htmlFor="treatment">Treatment</label>
                     </div>
                     <div className="cat">
-                    <input type="radio" checked={cat === "technology"} name="cat" value="technology" id="technology" onChange={e=>setCat(e.target.value)}/>
-                    <label htmlFor="technology">Technology</label>
+                    <input type="radio" checked={cat === "medicine"} name="cat" value="medicine" id="medicine" onChange={e=>setCat(e.target.value)}/>
+                    <label htmlFor="medicine">Medicine</label>
                     </div>
                     <div className="cat">
-                    <input type="radio" checked={cat === "infrastructure"} name="cat" value="infrastructure" id="infrastructure" onChange={e=>setCat(e.target.value)}/>
-                    <label htmlFor="infrastructure">Infrastructure</label>
+                    <input type="radio" checked={cat === "cases"} name="cat" value="cases" id="cases" onChange={e=>setCat(e.target.value)}/>
+                    <label htmlFor="cases">Cases</label>
                     </div>
                     <div className="cat">
-                    <input type="radio" checked={cat === "cars"} name="cat" value="cars" id="cars" onChange={e=>setCat(e.target.value)}/>
-                    <label htmlFor="cars">Cars</label>
+                    <input type="radio" checked={cat === "hospitals"} name="cat" value="hospitals" id="hospitals" onChange={e=>setCat(e.target.value)}/>
+                    <label htmlFor="hospitals">Hospitals</label>
                     </div>
                 </div>
             </div>

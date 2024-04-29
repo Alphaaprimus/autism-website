@@ -1,6 +1,6 @@
 import React ,{ useContext } from "react";
 import {Link} from "react-router-dom";
-import Logo from "../images/logo.png"
+import Logo from "../images/autism.png"
 import { AuthContext } from "../context/authContext.jsx";
 
 const Navbar = () => {
@@ -16,20 +16,20 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="links">
-                    <Link className="link" to="/?cat=design">
-                        <h5>Design</h5>
+                    <Link className="link" to="/?cat=symptoms">
+                        <h5>Symptoms</h5>
                     </Link>
-                    <Link className="link" to="/?cat=technology">
-                        <h5>Technology</h5>
+                    <Link className="link" to="/?cat=treatment">
+                        <h5>Treatment</h5>
                     </Link>
-                    <Link className="link" to="/?cat=cars">
-                        <h5>Cars</h5>
+                    <Link className="link" to="/?cat=medicine">
+                        <h5>Medicine</h5>
                     </Link>
-                    <Link className="link" to="/?cat=infrastructure">
-                        <h5>Infrastruture</h5>
+                    <Link className="link" to="/?cat=cases">
+                        <h5>Cases</h5>
                     </Link>
-                    <Link className="link" to="/?cat=art">
-                        <h5>Art</h5>
+                    <Link className="link" to="/?cat=hospitals">
+                        <h5>Hospitals</h5>
                     </Link>
                     <span>{currentUser?.username}</span>
                     {currentUser ? 
