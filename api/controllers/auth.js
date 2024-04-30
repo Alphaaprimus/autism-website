@@ -83,12 +83,12 @@ export const login= (req,res) =>{
 
 export const logout = (req,res) =>{
 
-    // console.log("request logout");
+     console.log("request logout");
     // console.log(req)
     // console.log("reponse logout");
     // console.log(res)
-
-
+    
+    console.log(res)
     res.clearCookie("access_token",{
         sameSite:"none",
         secure:true

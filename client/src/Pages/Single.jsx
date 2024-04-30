@@ -82,6 +82,10 @@ const Single = () => {
                 </p>
                 </div>
                 <Menu cat={post.cat}/>
+                <div>
+                    {console.log("end singlejsx")}
+                    {console.log(currentUser)}
+                </div>
         </div>
     )
 }

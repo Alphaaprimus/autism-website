@@ -1,0 +1,42 @@
+TO CREATE USERS TABLE
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    username character varying(45) COLLATE pg_catalog."default",
+    email character varying(255) COLLATE pg_catalog."default",
+    password character varying(255) COLLATE pg_catalog."default",
+    img character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT users_pkey PRIMARY KEY (id),
+    CONSTRAINT users_username_key UNIQUE (username)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.users
+    OWNER to postgres;
+
+
+TO CREATE POSTS TABLE
+
+CREATE TABLE IF NOT EXISTS public.posts
+(
+    id integer NOT NULL DEFAULT nextval('posts_id_seq'::regclass),
+    title character varying(255) COLLATE pg_catalog."default",
+    descript character varying(1000) COLLATE pg_catalog."default",
+    img character varying(1000) COLLATE pg_catalog."default",
+    date timestamp without time zone,
+    uid integer,
+    cat character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT posts_pkey PRIMARY KEY (id),
+    CONSTRAINT posts_uid_fkey FOREIGN KEY (uid)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.posts
+    OWNER to postgres;
+    
