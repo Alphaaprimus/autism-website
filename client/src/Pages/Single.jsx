@@ -63,17 +63,17 @@ const Single = () => {
                     <span>{post?.username}</span>
                     <p>Posted {moment(post.date).fromNow()}</p>
                 </div>
-                {console.log("post",post)}
-                {console.log(currentUser)}
                 {console.log("singlejsx")}
-                {console.log(currentUser.username)}
-                {currentUser.username === post.username  && (
+                {currentUser?.username === post.username ? (
                 <div className="edit">
                     <Link to={`/write?edit=2`} state={post}>
                     <img src={Edit} alt=""/>
                     </Link>
                     <img onClick = {handleDelete}  src={Delete} alt=""/>
                 </div>
+                ):(
+                    
+                    <Link to={"/"} />
                 )}
                 </div>
                 <h1>{post.title}</h1>
